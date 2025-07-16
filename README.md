@@ -12,3 +12,13 @@ This project integrates geospatial analysis, remote sensing, and GIS-based carto
 ├── 📁 Report/            # Final written report (DOCX, PDF), charts, figures
       ├── 📄 requirements.txt   # Python environment dependencies
 └── 📄 README.md          # Project overview and usage instructions
+
+## 🧰 Tools & Technologies Used
+
+- Type	- Tool / Library
+-- GIS Desktop	            QGIS 3.x
+-- Programming	            Python 3.10+, Conda environment
+-- Python Libraries	      Rasterio, GeoPandas, WhiteboxTools, scikit-learn, matplotlib
+-- Remote Sensing Data	      Sentinel-2 (multispectral), ASTER
+-- Infrastructure Data	      OpenStreetMap
+-- Reporting & Cartography	MS Word
