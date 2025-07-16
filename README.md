@@ -23,9 +23,9 @@ This project integrates geospatial analysis, remote sensing, and GIS-based carto
 | GIS Desktop           | QGIS 3.x                             |
 | Programming           | Python 3.10+, Conda environment      |
 | Python Libraries      | Rasterio, GeoPandas, WhiteboxTools, scikit-learn, matplotlib |
-| Remote Sensing Data   | Sentinel-2 (multispectral), ASTER/COP DEM |
-| Infrastructure Data   | OpenStreetMap Railway Lines         |
-| Reporting & Cartography | MS Word, QGIS Composer             |
+| Remote Sensing Data   | Sentinel-2 (multispectral), ASTER |
+| Infrastructure Data   | OpenStreetMap         |
+| Reporting & Cartography | MS Word             |
 
 ---
 
@@ -44,6 +44,7 @@ This project integrates geospatial analysis, remote sensing, and GIS-based carto
 ## ⚙️ Setting Up the Environment
 
 You can use `conda` to create an isolated environment with all required dependencies.
+Run the following commands in the command prompt to create your conda environment.
 
 ```bash
 # Create conda env
@@ -53,7 +54,7 @@ conda create -n flood-lulc python=3.10
 conda activate flood-lulc
 
 # Install dependencies
-pip install -r requirements.txt
+pip install -r requirements.txt # .txt file is given in the repo.
 ```
 Once the environment is set up, set the current directory to the root folder where the Python script is present.
 You can simply run the command below in the CLI with the correct paths to the required datasets. It will save the outputs in the '--out' path.
@@ -71,7 +72,7 @@ python flood_lulc_pipeline.py ^
   --training "D:\Data\RawData\Sen2Data\TrainingSamples.shp" ^
   --out "D:\PythonScripts\Outputs"
 ```
-### Required paths -
+### Required Paths Details -
 
 - '--dem', type=str, required=True, help='Path to input DEM file (Raw), only a single input file can be given. It will be reprojected and clipped to the Hong Kong region.'
 - '--aoi', type=str, required=True, help='Path to administrative boundary shapefile'
@@ -84,7 +85,9 @@ python flood_lulc_pipeline.py ^
 - clipped_dem_2326_*.tif
 - flow_acc_*.tif, slope_*.tif
 - flood_zones_*.tif + polygonized shp
-- railway_flood_impacted.geojson
+- Flood-impacted railway lines
 - lulc_kmeans_*.tif, lulc_supervised_*.tif
 - confusion_matrix_*.png
 - zonal_stats_flood_supervised_*.geojson
+
+Thank you for reading!
