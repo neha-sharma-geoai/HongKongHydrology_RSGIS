@@ -4,13 +4,15 @@ This project integrates geospatial analysis, remote sensing, and GIS-based carto
 ---
 
 ## 📁 Project Folder Structure
+```
 📂 Project_Root/
 ├── 📁 Data/ # All input spatial datasets (DEM, S2, AOI, Railway, Training)
 ├── 📁 PythonScripts/ # Python pipeline for automated processing
-├── 📁 Maps/ # Final maps exported from QGIS (PDF/PNG)
+├── 📁 Maps/ # Final maps exported from QGIS (PNG)
 ├── 📁 QGISProject/ # QGIS project file (.qgz), layer styles, templates
 ├── 📁 Report/ # Final written report (DOCX, PDF), charts, figures
 └── 📄 README.md # Project overview and usage instructions
+```
 
 ---
 
@@ -27,30 +29,15 @@ This project integrates geospatial analysis, remote sensing, and GIS-based carto
 
 ---
 
-## 🔄 Project Workflow
+## 🔄 Python Script Workflow
 
-### 1. **Preprocessing (Python Scripts)**
+### **Preprocessing (Python Scripts)**
 - Reproject and clip DEM
 - Perform hydrological modeling (flow accumulation, slope)
 - Extract flood-prone zones based on terrain criteria
 - Assess infrastructure (railway) exposure
 - Conduct LULC classification (KMeans & Random Forest)
 - Generate zonal statistics
-
-### 2. **Visualization & Cartographic Mapping (QGIS)**
-- Load outputs: classified rasters, flood zones, exposure maps
-- Apply custom symbology (legend, colors, labels)
-- Prepare cartographic layouts using QGIS Print Layout
-- Export high-resolution maps
-
-### 3. **Reporting (MS Word)**
-- Structure report into methodology, results, and conclusion
-- Includes:
-  - Flood zone maps
-  - Historical flood risk analysis
-  - LULC classification results (unsupervised + supervised)
-  - Exposure summary tables
-  - Screenshots and flowcharts of the pipeline
 
 ---
 
@@ -68,6 +55,8 @@ conda activate flood-lulc
 # Install dependencies
 pip install -r requirements.txt
 ```
+Once the environment is set up, set the current directory to the root folder where the Python script is present.
+You can simply run the command below in the CLI with the correct paths to the required datasets. It will save the outputs in the '--out' path.
 
 ## ▶️ Running the Python Pipeline
 
@@ -82,3 +71,20 @@ python flood_lulc_pipeline.py ^
   --training "D:\Data\RawData\Sen2Data\TrainingSamples.shp" ^
   --out "D:\PythonScripts\Outputs"
 ```
+### Required paths -
+
+- '--dem', type=str, required=True, help='Path to input DEM file (Raw), only a single input file can be given. It will be reprojected and clipped to the Hong Kong region.'
+- '--aoi', type=str, required=True, help='Path to administrative boundary shapefile'
+- '--tiles', type=str, required=True, help='Folder containing Sentinel-2 layer stacked tiles. The folder should only contain those TIF files which are to be mosaiced together.'
+- '--rail', type=str, required=True, help='Path to railway shapefile'
+- '--training', type=str, required=True, help='Path to training shapefile for supervised classification in shapefile format'
+- '--out', type=str, required=True, help='Output folder for results'
+
+### 📊 Outputs
+- clipped_dem_2326_*.tif
+- flow_acc_*.tif, slope_*.tif
+- flood_zones_*.tif + polygonized shp
+- railway_flood_impacted.geojson
+- lulc_kmeans_*.tif, lulc_supervised_*.tif
+- confusion_matrix_*.png
+- zonal_stats_flood_supervised_*.geojson
