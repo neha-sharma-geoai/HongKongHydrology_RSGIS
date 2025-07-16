@@ -62,6 +62,7 @@ You can simply run the command below in the CLI with the correct paths to the re
 ## ▶️ Running the Python Pipeline
 
 ### 🖥️ Example (Windows)
+Run this command in the CLI.
 
 ```cmd
 python flood_lulc_pipeline.py ^
